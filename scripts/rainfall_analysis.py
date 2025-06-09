@@ -1,4 +1,7 @@
+import matplotlib
 import pandas as pd
+import matplotlib.pyplot as plt
+import os
 
 def load_rainfall_data(filepath: str) -> pd.DataFrame:
     """CSV 파일에서 강수량 데이터 불러오기"""
@@ -17,7 +20,6 @@ def summarize_rainfall(df: pd.DataFrame):
         146: '광주',
         133: '대전',
         184: '제주'
-        # 필요 시 더 추가
     }
 
     station_code = int(df['지점'].iloc[0])
@@ -32,3 +34,36 @@ def summarize_rainfall(df: pd.DataFrame):
     print(f"총 일수: {total_days}일")
     print(f"비 안 온 날: {zero_rain_days}일 ({zero_rain_days / total_days:.1%})")
     print(f"최대 강수량: {max_rain}mm on {max_day}")
+
+def visualize_rainfall(df: pd.DataFrame, output_path: str):
+    station_map = {
+        108: '서울',
+        159: '부산',
+        143: '대구',
+        131: '인천',
+        146: '광주',
+        133: '대전',
+        184: '제주'
+    }
+    matplotlib.rc('font', family='AppleGothic')
+    matplotlib.rcParams['axes.unicode_minus'] = False
+
+    station_code = int(df['지점'].iloc[0])
+    region_name = station_map.get(station_code, f"알 수 없는 지역 (코드: {station_code})")
+
+    # output 폴더 생성
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    # 시각화
+    plt.figure(figsize=(12, 6))
+    plt.plot(df['날짜'], df['강수량(mm)'], label='일별 강수량', color='blue')
+    plt.title(f'2024년 {region_name} 일별 강수량')
+    plt.xlabel('날짜')
+    plt.ylabel('강수량 (mm)')
+    plt.grid(True)
+    plt.legend()
+    plt.tight_layout()
+
+    # 저장
+    plt.savefig(output_path)
+    print(f"✅ 그래프 저장됨: {os.path.abspath(output_path)}")
