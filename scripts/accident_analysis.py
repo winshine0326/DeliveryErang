@@ -40,4 +40,4 @@ def load_accident_data(filepath="data/accident.xls", output_path="output/seoul_a
     plt.tight_layout()
     plt.savefig(output_path)
 
-    print(f"✅ 사고 그래프 저장됨: {os.path.abspath(output_path)}")
+    print(f"사고 그래프 저장됨: {os.path.abspath(output_path)}")

@@ -66,4 +66,4 @@ def visualize_rainfall(df: pd.DataFrame, output_path: str):
 
     # 저장
     plt.savefig(output_path)
-    print(f"✅ 그래프 저장됨: {os.path.abspath(output_path)}")
+    print(f"강수량 그래프 저장됨: {os.path.abspath(output_path)}")

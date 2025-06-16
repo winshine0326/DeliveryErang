@@ -28,4 +28,4 @@ def visualize_least_congested_districts(
 
     # 저장
     plt.savefig(output_path)
-    print(f"✅ 그래프 저장 완료: {os.path.abspath(output_path)}")
+    print(f"도로 혼잡도 그래프 저장됨: {os.path.abspath(output_path)}")
