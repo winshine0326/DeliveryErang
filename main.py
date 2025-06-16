@@ -1,5 +1,6 @@
 from scripts.accident_analysis import load_accident_data
 from scripts.rainfall_analysis import load_rainfall_data, summarize_rainfall, visualize_rainfall
+from scripts.traffic_jam import visualize_least_congested_districts
 
 
 def main():
@@ -11,6 +12,9 @@ def main():
     visualize_rainfall(df, output_path)
 
     load_accident_data()
+
+    visualize_least_congested_districts()
+
 
 if __name__ == "__main__":
     main()
